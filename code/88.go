@@ -20,24 +20,28 @@ nums2 = [2,5,6],       n = 3
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
+/**
+- 设两指针分别指向nums1和nums2，对分别指向的值进行判断。
+- 题目要求将数组合并到nums1中，所以要从数组末尾开始遍历，否则会将nums1的数据覆盖掉。
+ */
 func merge(nums1 []int, m int, nums2 []int, n int)  {
-	p := m + n -1 // 从数组末尾开始找
-	m = m - 1
-	n = n - 1
-	for m>=0 && n>=0{
-		if(nums1[m] > nums2[n]) {
+	p := m + n -1
+	m, n = m - 1, n - 1  // m, n 是数组长度, 减一当索引用
+	for m>=0 || n>=0{
+		if m < 0 { // nums1已经合并完了, 剩余的都是nums2数据
+			nums1[p] = nums2[n]
+			n--
+		} else if n < 0 { // nums2已经合并完了, 剩余的都是nums1数组
 			nums1[p] = nums1[m]
 			m--
-		}else{
+		} else if nums1[m] > nums2[n] { //　大的数先合并
+			nums1[p] = nums1[m]
+			m--
+		} else {
 			nums1[p] = nums2[n]
 			n--
 		}
-		p--
-	}
-	for n >= 0 {
-		nums1[p] = nums2[n]
-		p--
-		n--
+		p--  // 移至下一次需合并的位置
 	}
 }
 
