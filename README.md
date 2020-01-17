@@ -1,5 +1,7 @@
 # leetcode
 
+<style> table th:first-of-type { width: 100px; } </style>
+
 - 记录日常刷leetcode代码和题解, go语言描述。
 
 | 题号 |     题名和解题链接     | 难度 |
